@@ -10,7 +10,7 @@ alt="Elvis Mao"></a>
 AKA EM, 毛哥 EM
 
 </div>
-<img src="https://raw.githubusercontent.com/Edit-Mr/Edit-Mr/main/avatar.webp" align="right" width="300px" style="">
+<img src="https://raw.githubusercontent.com/elvisdragonmao/elvisdragonmao/main/avatar.webp" align="right" width="300px" style="">
 
 ## 💻 &nbsp;About Me
 
@@ -23,7 +23,7 @@ _I'm a 18y 🌐 Full Stack Developer, 🎨 Digital Artist, 🎤 PF/WS Debater, a
 ## 💻 &nbsp;OSS Project I'm working on
 
 -   [emfont](https://github.com/emfont/emfont) - A free Chinese webfont service
--   [emtech](https://github.com/Edit-Mr/emtech) - My tech blog with a static SPA blog generator
+-   [emtech](https://github.com/elvisdragonmao/emtech) - My tech blog with a static SPA blog generator
 -   [EM's Base](https://elvismao.com) - All kinds of website creations
 -   Translate all kinds of apps
 
@@ -56,12 +56,12 @@ _I'm a 18y 🌐 Full Stack Developer, 🎨 Digital Artist, 🎤 PF/WS Debater, a
 
 <p>
   
-![GitHub Snake Light](https://raw.githubusercontent.com/Edit-Mr/Edit-Mr/output/github-contribution-grid-snake.svg#gh-light-mode-only)
-![GitHub Snake dark](https://raw.githubusercontent.com/Edit-Mr/Edit-Mr/output/github-contribution-grid-snake-dark.svg#gh-dark-mode-only)
+![GitHub Snake Light](https://raw.githubusercontent.com/elvisdragonmao/elvisdragonmao/output/github-contribution-grid-snake.svg#gh-light-mode-only)
+![GitHub Snake dark](https://raw.githubusercontent.com/elvisdragonmao/elvisdragonmao/output/github-contribution-grid-snake-dark.svg#gh-dark-mode-only)
   
-<a href="https://github.com/Edit-Mr">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Edit-Mr&show_icons=true&theme=radical" />
-  <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=Edit-Mr&theme=radical&layout=compact&exclude_lang=java+r" />
+<a href="https://github.com/elvisdragonmao">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=elvisdragonmao&show_icons=true&theme=radical" />
+  <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=elvisdragonmao&theme=radical&layout=compact&exclude_lang=java+r" />
 </a>
 <br><br>
 
@@ -73,5 +73,5 @@ _I'm a 18y 🌐 Full Stack Developer, 🎨 Digital Artist, 🎤 PF/WS Debater, a
   
 <p align="center">
 <a href="mailto:info@elvismao.com"><img src="https://img.shields.io/badge/-info@elvismao.com-D14836?style=flat-square&logo=Gmail&logoColor=white"/></a>
-<img src="https://komarev.com/ghpvc/?username=edit-mr&style=flat-square"/>
+<img src="https://komarev.com/ghpvc/?username=elvisdragonmao&style=flat-square"/>
 </p>
