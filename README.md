@@ -17,7 +17,6 @@ AKA EM, 毛哥 EM
 _I'm a full-stack dev, designer, and a PF/WS debater from Taiwan. I like to use technology to do all types of creations._
 
 - 🌎 Exploring new technologies and developing software solutions to make the world a better place.
-- 🅰️ Software Engineer at [justfont](https://justfont.com/).
 - 🎓 Studying CS in NYCU.
 
 ## 💻 &nbsp;OSS Project I'm working on
