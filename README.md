@@ -21,9 +21,10 @@ _I'm a full-stack dev, designer, and a PF/WS debater from Taiwan. I like to use 
 
 ## 💻 &nbsp;OSS Project I'm working on
 
-- [emfont](https://github.com/emfont/emfont) - A free Chinese webfont service
-- [emtech](https://github.com/elvisdragonmao/emtech) - My tech blog with a static SPA blog generator
-- [EM's Base](https://elvismao.com) - All kinds of website creations
+- [emfont](https://github.com/emfont/emfont) - A free Chinese webfont service.
+- [emtech](https://github.com/elvisdragonmao/emtech) - My tech blog with a static SPA blog generator.
+- [Core System](https://github.com/NYCU-SDC/core-system-frontend) - Project from [NYCU Software Development Club](https://github.com/NYCU-SDC)
+- [EM's Base](https://elvismao.com) - All kinds of websites.
 
 [![Buy Me a Red Bull](https://img.buymeacoffee.com/button-api/?text=Fuel%20me%20with%20Red%20Bull&slug=elvismao&button_colour=FFDD00&font_colour=000000&font_family=Bree&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/elvismao)
 
