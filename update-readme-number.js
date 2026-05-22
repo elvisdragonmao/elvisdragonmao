@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execFileSync } from "node:child_process";
-import { readFile, writeFile } from "node:fs/promises";
+import { access, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -12,6 +12,7 @@ const TOP_LAYER_END_MARKER = "<!-- readme-profile-top-layer:end -->";
 const LEGACY_START_MARKER = "<!-- readme-top-right-number:start -->";
 const LEGACY_END_MARKER = "<!-- readme-top-right-number:end -->";
 const DEFAULT_TIME_ZONE = "Asia/Taipei";
+const DEFAULT_PROFILE_SVGS = ["profile.svg", "profile-light.svg"];
 
 const STAT_CARDS = [
   {
@@ -73,30 +74,40 @@ const STAT_CARDS = [
 
 const args = parseArgs(process.argv.slice(2));
 const repoRoot = resolve(fileURLToPath(new URL(".", import.meta.url)));
-const svgPath = resolve(repoRoot, args.svg ?? "profile.svg");
-const bubbleTeaPath = resolve(repoRoot, args["bubble-tea"] ?? "bubble-tea.svg");
+const svgPaths = args.svg ? [resolve(repoRoot, args.svg)] : await resolveDefaultSvgPaths(repoRoot);
 const username = args.username ?? process.env.GITHUB_USERNAME ?? "elvisdragonmao";
 const token = getGitHubToken(args);
 const updatedAt = args.date ?? args["updated-at"] ?? getCurrentDate(DEFAULT_TIME_ZONE);
 const values = await resolveStatValues({ args, username, token });
-const bubbleTeaIcon = extractSvgBody(await readFile(bubbleTeaPath, "utf8"));
-
-const svg = await readFile(svgPath, "utf8");
-const withStats = upsertStatsOverlay(removeLegacyOverlay(normalizeHeroImageLayer(svg)), {
-  values,
-  username,
-});
-const nextSvg = upsertTopLayerOverlay(withStats, {
-  bubbleTeaIcon,
-  updatedAt,
-});
 
 if (args["dry-run"]) {
-  console.log(JSON.stringify({ ...values, updatedAt }, null, 2));
+  console.log(JSON.stringify({ ...values, updatedAt, svgPaths }, null, 2));
 } else {
-  await writeFile(svgPath, nextSvg);
+  for (const svgPath of svgPaths) {
+    const svg = await readFile(svgPath, "utf8");
+    const nextSvg = updateProfileSvg(svg, { values, username, updatedAt });
+    await writeFile(svgPath, nextSvg);
+  }
+
   const summary = STAT_CARDS.map((card) => `${card.key}=${values[card.key]}`).join(", ");
-  console.log(`Updated ${svgPath}: ${summary}, updatedAt=${updatedAt}.`);
+  console.log(`Updated ${svgPaths.join(", ")}: ${summary}, updatedAt=${updatedAt}.`);
+}
+
+async function resolveDefaultSvgPaths(repoRoot) {
+  const svgPaths = [];
+
+  for (const fileName of DEFAULT_PROFILE_SVGS) {
+    const svgPath = resolve(repoRoot, fileName);
+
+    try {
+      await access(svgPath);
+      svgPaths.push(svgPath);
+    } catch {
+      // Optional theme variants are skipped when they do not exist yet.
+    }
+  }
+
+  return svgPaths.length > 0 ? svgPaths : [resolve(repoRoot, DEFAULT_PROFILE_SVGS[0])];
 }
 
 function parseArgs(argv) {
@@ -393,26 +404,31 @@ function upsertStatsOverlay(svg, { values, username }) {
   return `${svg.slice(0, defsIndex)}${overlay}\n${svg.slice(defsIndex)}`;
 }
 
-function upsertTopLayerOverlay(svg, { bubbleTeaIcon, updatedAt }) {
+function updateProfileSvg(svg, { values, username, updatedAt }) {
+  const withStats = upsertStatsOverlay(removeLegacyOverlay(svg), {
+    values,
+    username,
+  });
+  const withHeroOnTop = normalizeHeroImageLayer(withStats);
+
+  return upsertUpdatedAt(withHeroOnTop, { updatedAt });
+}
+
+function upsertUpdatedAt(svg, { updatedAt }) {
+  const updatedAtText = `Updated ${escapeXml(updatedAt)}`;
+  const updatedAtPattern = /(<text\b[^>]*\bid="readme-profile-updated-at"[^>]*>)([\s\S]*?)(<\/text>)/;
+
+  if (updatedAtPattern.test(svg)) {
+    return svg.replace(updatedAtPattern, `$1${updatedAtText}$3`);
+  }
+
   const overlay = [
     TOP_LAYER_START_MARKER,
     '<g id="readme-profile-top-layer">',
-    `  <text id="readme-profile-updated-at" x="1538" y="621" fill="#596273" opacity="0.34" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18" font-weight="500" text-anchor="end">Updated ${escapeXml(updatedAt)}</text>`,
-    '  <g id="readme-profile-bubble-tea" transform="translate(480 686) scale(0.8)">',
-    indentSvg(bubbleTeaIcon, 4),
-    "  </g>",
+    `  <text id="readme-profile-updated-at" x="1538" y="621" fill="#596273" opacity="0.34" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18" font-weight="500" text-anchor="end">${updatedAtText}</text>`,
     "</g>",
     TOP_LAYER_END_MARKER,
   ].join("\n");
-
-  const markerPattern = new RegExp(
-    `${escapeRegExp(TOP_LAYER_START_MARKER)}[\\s\\S]*?${escapeRegExp(TOP_LAYER_END_MARKER)}`,
-  );
-
-  if (markerPattern.test(svg)) {
-    return svg.replace(markerPattern, overlay);
-  }
-
   const defsIndex = svg.indexOf("<defs>");
 
   if (defsIndex === -1) {
@@ -441,37 +457,16 @@ function removeLegacyOverlay(svg) {
   return svg.replace(markerPattern, "");
 }
 
-function extractSvgBody(svg) {
-  const match = svg.match(/<svg\b[^>]*>([\s\S]*?)<\/svg>/);
-
-  if (!match) {
-    throw new Error("Invalid bubble tea SVG.");
-  }
-
-  return match[1].trim();
-}
-
-function indentSvg(svg, spaces) {
-  const indentation = " ".repeat(spaces);
-  return svg
-    .split("\n")
-    .map((line) => `${indentation}${line}`)
-    .join("\n");
-}
-
 function normalizeHeroImageLayer(svg) {
   const heroImage = '<rect x="393" width="1069" height="623" fill="url(#pattern0_28_350)"/>';
-  const firstStatCard = '<rect x="1168" y="92" width="193" height="132" rx="15" fill="url(#paint5_linear_28_350)"/>';
-
   const heroIndex = svg.indexOf(heroImage);
-  const cardIndex = svg.indexOf(firstStatCard);
 
-  if (heroIndex === -1 || cardIndex === -1 || heroIndex < cardIndex) {
+  if (heroIndex === -1 || !svg.includes(TOP_LAYER_START_MARKER)) {
     return svg;
   }
 
-  const withoutHero = svg.replace(`${heroImage}\n`, "");
-  return withoutHero.replace(firstStatCard, `${heroImage}\n${firstStatCard}`);
+  const withoutHero = svg.replace(`${heroImage}\n`, "").replace(heroImage, "");
+  return withoutHero.replace(TOP_LAYER_START_MARKER, `${heroImage}\n${TOP_LAYER_START_MARKER}`);
 }
 
 function escapeXml(value) {
