@@ -1,0 +1,9 @@
+<svg width="150" height="35" viewBox="0 0 150 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.75" y="0.75" width="148.5" height="33.5" rx="6.25" fill="#020D14" stroke="#262C37" stroke-width="1.5"/>
+<path d="M18 10.5H31L29.6 25.5C29.45 27.1 28.12 28.25 26.52 28.25H22.48C20.88 28.25 19.55 27.1 19.4 25.5L18 10.5Z" fill="#F8C568"/>
+<path d="M17 9H32" stroke="#8B51F3" stroke-width="2" stroke-linecap="round"/>
+<path d="M23 10L25.2 5.5" stroke="#8B51F3" stroke-width="2" stroke-linecap="round"/>
+<circle cx="23" cy="21" r="1.4" fill="#292F33"/>
+<circle cx="27" cy="24" r="1.4" fill="#292F33"/>
+<text x="39" y="22.2" fill="#E6ECF2" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11.5" font-weight="650">buy me a monster</text>
+</svg>

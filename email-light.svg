@@ -1,8 +1,6 @@
-<svg width="430" height="86" viewBox="0 0 430 86" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="1" y="1" width="428" height="84" rx="12" fill="#FFFFFF" stroke="#D7DCE3" stroke-width="2"/>
-<rect x="24" y="22" width="42" height="42" rx="10" fill="#EFF7FF" stroke="#B8D7F5" stroke-width="2"/>
-<path d="M34 34H56C57.657 34 59 35.343 59 37V51C59 52.657 57.657 54 56 54H34C32.343 54 31 52.657 31 51V37C31 35.343 32.343 34 34 34Z" stroke="#2498FA" stroke-width="2" stroke-linejoin="round"/>
-<path d="M32 37L45 46L58 37" stroke="#2498FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="84" y="38" fill="#7A8491" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="16" font-weight="500">Email</text>
-<text x="84" y="63" fill="#1976D2" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="700">info@elvismao.com</text>
+<svg width="150" height="35" viewBox="0 0 150 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.75" y="0.75" width="148.5" height="33.5" rx="6.25" fill="#FFFFFF" stroke="#D7DCE3" stroke-width="1.5"/>
+<path d="M13.5 10.5H29.5C30.605 10.5 31.5 11.395 31.5 12.5V22.5C31.5 23.605 30.605 24.5 29.5 24.5H13.5C12.395 24.5 11.5 23.605 11.5 22.5V12.5C11.5 11.395 12.395 10.5 13.5 10.5Z" stroke="#1976D2" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M12.5 13L21.5 19.5L30.5 13" stroke="#1976D2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="37" y="21.2" fill="#344054" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10.5" font-weight="650">info@elvismao.com</text>
 </svg>
