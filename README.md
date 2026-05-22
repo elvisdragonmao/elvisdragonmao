@@ -1,11 +1,18 @@
-![Hi, this is Elvis Mao. I build things that think, speak, and ship. From idea to impact - through code, curiosity, and a bit less of sleep.](profile.svg#gh-light-mode-only)
-![Hi, this is Elvis Mao. I build things that think, speak, and ship. From idea to impact - through code, curiosity, and a bit less of sleep.](profile.svg#gh-dark-mode-only)
+![Hi, this is Elvis Mao. I build things that think, speak, and ship. From idea to impact - through code, curiosity, and a bit less of sleep.](profile.svg)
 
-<div align="center">
-
-[![Email info@elvismao.com](email-light.svg#gh-light-mode-only)](mailto:info@elvismao.com)
-[![Email info@elvismao.com](email.svg#gh-dark-mode-only)](mailto:info@elvismao.com)
-[![Buy me a monster](buy-me-a-monster-light.svg#gh-light-mode-only)](https://www.buymeacoffee.com/elvismao)
-[![Buy me a monster](buy-me-a-monster.svg#gh-dark-mode-only)](https://www.buymeacoffee.com/elvismao)
-
-</div>
+<p align="center">
+  <a href="mailto:info@elvismao.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="email.svg">
+      <source media="(prefers-color-scheme: light)" srcset="email-light.svg">
+      <img alt="Email info@elvismao.com" src="email.svg">
+    </picture>
+  </a>
+  <a href="https://www.buymeacoffee.com/elvismao">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="buy-me-a-monster.svg">
+      <source media="(prefers-color-scheme: light)" srcset="buy-me-a-monster-light.svg">
+      <img alt="Buy me a monster" src="buy-me-a-monster.svg">
+    </picture>
+  </a>
+</p>
